@@ -8,13 +8,13 @@ terraform {
       version = "4.1.0"
     }
   }
-  /*
+
   backend "azurerm" {
-    resource_group_name  = "rg-absw-be" # Can be passed via `-backend-config=`"resource_group_name=<resource group name>"` in the `init` command.
-    storage_account_name = "saabswbe"                      # Can be passed via `-backend-config=`"storage_account_name=<storage account name>"` in the `init` command.
-    container_name       = "tfstate"                       # Can be passed via `-backend-config=`"container_name=<container name>"` in the `init` command.
-    key                  = "terraform.terraform.tfstate"        # Can be passed via `-backend-config=`"key=<blob key name>"` in the `init` command.
-  }*/
+    resource_group_name  = "rg-absw-be"                # Can be passed via `-backend-config=`"resource_group_name=<resource group name>"` in the `init` command.
+    storage_account_name = "saabswbe"                  # Can be passed via `-backend-config=`"storage_account_name=<storage account name>"` in the `init` command.
+    container_name       = "tfstate"                   # Can be passed via `-backend-config=`"container_name=<container name>"` in the `init` command.
+    key                  = "backend.terraform.tfstate" # Can be passed via `-backend-config=`"key=<blob key name>"` in the `init` command.
+  }
 
 
 }
@@ -50,10 +50,6 @@ resource "azurerm_storage_account" "sa-absw-be" {
   location                 = azurerm_resource_group.rg-absw-be.location
   account_tier             = "Standard"
   account_replication_type = "GRS"
-
-  tags = {
-    environment = "backend"
-  }
 }
 
 resource "azurerm_storage_container" "sc-absw-be" {
