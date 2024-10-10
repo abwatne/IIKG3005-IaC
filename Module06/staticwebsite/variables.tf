@@ -27,3 +27,9 @@ variable "source_content" {
   description = "Source for content for index/html side"
   default     = "index.html"
 }
+
+variable "error_404_document" {
+  type = string
+  description = "404"
+  default = "<h1>ERROR</h1>"
+}
