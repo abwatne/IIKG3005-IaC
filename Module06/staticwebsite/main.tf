@@ -31,7 +31,6 @@ resource "azurerm_storage_account" "saabswweb" {
 
   static_website {
     index_document = var.index_document
-    error_404_document = var.error_404_document
   }
 }
 

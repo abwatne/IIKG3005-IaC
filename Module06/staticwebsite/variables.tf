@@ -19,17 +19,11 @@ variable "sa_name" {
 variable "index_document" {
   type        = string
   description = "Name of index doc"
-  default = "<h1>test</h1>"
+  default = "index.html"
 }
 
 variable "source_content" {
   type        = string
   description = "Source for content for index/html side"
-  default     = "index.html"
-}
-
-variable "error_404_document" {
-  type = string
-  description = "404"
-  default = "<h1>ERROR</h1>"
+  default     = "<h1>test</h1>"
 }
