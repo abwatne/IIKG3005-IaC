@@ -7,7 +7,7 @@ variable "rg_name" {
 variable "location" {
   type        = string
   description = "Name of location"
-  default = "abswtest"
+  default = "westeurope"
 }
 
 variable "sa_name" {
@@ -19,7 +19,7 @@ variable "sa_name" {
 variable "index_document" {
   type        = string
   description = "Name of index doc"
-  default = "abswtest"
+  default = "<h1>test</h1>"
 }
 
 variable "source_content" {
