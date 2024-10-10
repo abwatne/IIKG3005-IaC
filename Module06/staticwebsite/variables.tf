@@ -21,5 +21,5 @@ variable "index_document" {
 variable "source_content" {
   type        = string
   description = "Source for content for index/html side"
-  default = "index.html"
+  default     = "index.html"
 }
