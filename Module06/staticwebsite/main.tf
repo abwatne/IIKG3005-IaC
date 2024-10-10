@@ -41,7 +41,7 @@ resource "azurerm_storage_blob" "index-html" {
   storage_container_name = "$web" #Spesiell funksjon, tilbyr static webpages
   type                   = "Block"
   content_type           = "text/html"
-  source_content         = "${var.source_content}${local.web_suffix}"
+  source_content         = "<h1>test</h1>"    # "${var.source_content}${local.web_suffix}"
 }
 
 output "primary_web_webpoint" {
