@@ -27,7 +27,7 @@ resource "azurerm_storage_account" "saabswweb" {
   resource_group_name      = azurerm_resource_group.rg-absw-web.name
   location                 = azurerm_resource_group.rg-absw-web.location
   account_tier             = "Standard"
-  account_replication_type = "LRS"
+  account_replication_type = "GRS"
 
   static_website {
     index_document = var.index_document
@@ -46,5 +46,5 @@ resource "azurerm_storage_blob" "index-html" {
 
 output "primary_web_webpoint" {
   
-  value = azurerm_storage_account.saabswweb.primary_web_host
+  value = azurerm_storage_account.saabswweb.primary_web_microsoft_endpoint
 }
