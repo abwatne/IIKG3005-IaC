@@ -1,7 +1,7 @@
 variable "rg_name" {
   type        = string
   description = "Name of rg"
-  default = "abswtest"
+  default = "rg-absw"
 }
 
 variable "location" {
@@ -13,7 +13,7 @@ variable "location" {
 variable "sa_name" {
   type        = string
   description = "Name of SA"
-  default = "abswtest"
+  default = "saabsw"
 }
 
 variable "index_document" {
