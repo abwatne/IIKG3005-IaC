@@ -45,6 +45,5 @@ resource "azurerm_storage_blob" "index-html" {
 }
 
 output "primary_web_webpoint" {
-  
-  value = azurerm_storage_account.saabswweb.primary_web_internet_endpoint     #primary_web_microsoft_host   #primary_web_microsoft_endpoint
+  value = primary_web_webpoint    #azurerm_storage_account.saabswweb.    primary_web_internet_endpoint     #primary_web_microsoft_host   #primary_web_microsoft_endpoint
 }
