@@ -27,7 +27,7 @@ resource "azurerm_storage_account" "saabswweb" {
   resource_group_name      = azurerm_resource_group.rg-absw-web.name
   location                 = azurerm_resource_group.rg-absw-web.location
   account_tier             = "Standard"
-  account_replication_type = "GRS"
+  account_replication_type = "LRS"
 
   static_website {
     index_document = var.index_document
