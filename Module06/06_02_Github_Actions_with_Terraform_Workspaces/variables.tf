@@ -1,25 +1,25 @@
 variable "rg_name" {
   type        = string
   description = "Name of rg"
-  default = "rg-absw"
+  default     = "rg-absw"
 }
 
 variable "location" {
   type        = string
   description = "Name of location"
-  default = "westeurope"
+  default     = "westeurope"
 }
 
 variable "sa_name" {
   type        = string
   description = "Name of SA"
-  default = "saabsw"
+  default     = "saabsw"
 }
 
 variable "index_document" {
   type        = string
   description = "Name of index doc"
-  default = "index.html"
+  default     = "index.html"
 }
 
 variable "source_content" {
