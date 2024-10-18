@@ -32,9 +32,9 @@ jobs:
         run: terraform apply -auto-approve
         working-directory: ${{ env.WORKING_DIR }}
 
-      #- name: Test dev
-        # run: curl $(terraform output -raw primary_web_webpoint)
-      #  working-directory: ${{ env.WORKING_DIR }}
+      - name: Test dev
+        run: curl $(terraform output -raw primary_web_endpoint)
+        working-directory: ${{ env.WORKING_DIR }}
 
   stage_prod:
     needs: dev_stage
@@ -55,16 +55,16 @@ jobs:
         run: terraform apply -auto-approve
         working-directory: ${{ env.WORKING_DIR }}
 
-      #- name: Test stage
-        # run: curl $(terraform output -raw primary_web_webpoint)
-       # working-directory: ${{ env.WORKING_DIR }}
+      - name: Test stage
+        run: curl $(terraform output -raw primary_web_endpoint)
+        working-directory: ${{ env.WORKING_DIR }}
 
   prod:
     needs: stage_prod
     runs-on: ubuntu-latest
     environment: 
       name: production
-      url: ${{ steps.get_web_endpoint.outputs.WEB_ENDPOINT }} # replace deploy_prod and web_url with actual output variables
+      url: ${{ steps.get_web_endpoint.outputs.primary_web_endpoint  WEB_ENDPOINT }} #${{ steps.get_web_endpoint.outputs.WEB_ENDPOINT }} # replace deploy_prod and web_url with actual output variables
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.1
