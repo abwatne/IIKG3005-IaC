@@ -36,6 +36,21 @@ jobs:
         run: curl $(terraform output -raw primary_web_endpoint)
         working-directory: ${{ env.WORKING_DIR }}
 
+      - name: 'Check last commit message'
+        id: commit
+        run: echo "::set-output name=message::$(git log --format=%B -n 1)"
+      - name: 'Conditionally run Terraform action'
+        run: |
+          if [[ "${{ steps.commit.outputs.message }}" == *"destroy"* ]]; then
+            terraform destroy -auto-approve
+          else
+            terraform apply -auto-approve
+          fi
+        working-directory: ${{ env.WORKING_DIR }} 
+
+
+        
+
   stage_prod:
     needs: dev_stage
     runs-on: ubuntu-latest
