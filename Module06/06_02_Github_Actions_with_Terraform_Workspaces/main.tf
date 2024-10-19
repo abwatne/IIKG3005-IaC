@@ -48,4 +48,4 @@ output "primary_web_endpoint" {
   value = azurerm_storage_account.sa-absw-web.primary_web_endpoint
 }
 
-#run1
+#destory
