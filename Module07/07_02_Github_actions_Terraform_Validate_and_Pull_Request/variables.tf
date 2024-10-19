@@ -7,7 +7,7 @@ variable "base_name" {
 
 variable "rg_name" {
   type        = string
-  default     = "absw"
+  default     = "rg"
   description = "Name of the resource group to create"
 }
 
@@ -38,7 +38,7 @@ variable "sa_accesskey_name" {
 
 variable "sa_name" {
   type        = string
-  default     = "saabswbe"
+  default     = "sa"
   description = "value of the storage account name"
 }
 
