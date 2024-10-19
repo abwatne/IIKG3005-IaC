@@ -8,7 +8,7 @@ on:
     branches:
       - 'main'
     paths:
-      - 'Module07/07_03_Merge_pull_request_to_main_and_deploy_infrastructure/**'
+      - 'Module07/07_02_Github_actions_Terraform_Validate_and_Pull_Request/**'
       
 jobs:
   terraform:
@@ -20,7 +20,7 @@ jobs:
       ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-      WORKING_DIR: ./Module07/07_03_Merge_pull_request_to_main_and_deploy_infrastructure
+      WORKING_DIR: ./Module07/07_02_Github_actions_Terraform_Validate_and_Pull_Request
       
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
