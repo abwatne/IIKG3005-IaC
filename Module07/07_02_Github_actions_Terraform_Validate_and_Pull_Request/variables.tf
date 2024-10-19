@@ -1,13 +1,13 @@
 ###### General variables ######
 variable "base_name" {
   type        = string
-  default     = "demo"
+  default     = "absw"
   description = "value of the base name"
 }
 
 variable "rg_name" {
   type        = string
-  default     = "rg"
+  default     = "absw"
   description = "Name of the resource group to create"
 }
 
@@ -38,7 +38,7 @@ variable "sa_accesskey_name" {
 
 variable "sa_name" {
   type        = string
-  default     = "sa"
+  default     = "absw"
   description = "value of the storage account name"
 }
 
