@@ -38,7 +38,7 @@ variable "sa_accesskey_name" {
 
 variable "sa_name" {
   type        = string
-  default     = "absw"
+  default     = "saabswbe"
   description = "value of the storage account name"
 }
 
