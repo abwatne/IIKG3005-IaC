@@ -10,7 +10,11 @@ resource "azurerm_key_vault" "kv" {
   purge_protection_enabled    = false
     network_acls {
       default_action = "Deny"
-      bypass = "AzureServices"      
+      bypass = "AzureServices"    
+
+      virtual_network_subnet_ids = [
+        azurerm_subnet.example.id
+    ]  
   }
 
   sku_name = "standard"
