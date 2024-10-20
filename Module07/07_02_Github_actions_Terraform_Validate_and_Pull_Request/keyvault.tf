@@ -13,7 +13,7 @@ resource "azurerm_key_vault" "kv" {
       bypass = "AzureServices"    
 
       virtual_network_subnet_ids = [
-        azurerm_subnet.example.id
+        azurerm_subnet.subnet.id
     ]  
   }
 
