@@ -8,14 +8,14 @@ resource "azurerm_key_vault" "kv" {
   tenant_id                   = data.azurerm_client_config.current.tenant_id
   soft_delete_retention_days  = 7
   purge_protection_enabled    = false
-    network_acls {
+    /*network_acls {
       default_action = "Deny"
       bypass = "AzureServices"    
 
       virtual_network_subnet_ids = [
         azurerm_subnet.subnet.id
     ]  
-  }
+  }*/
 
   sku_name = "standard"
 
