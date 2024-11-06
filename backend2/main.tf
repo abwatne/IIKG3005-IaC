@@ -10,6 +10,8 @@ terraform {
   }
 
   
+
+
 }
 
 provider "azurerm" {
@@ -87,3 +89,6 @@ resource "azurerm_key_vault_secret" "sa-backend-accesskey" {
   value        = azurerm_storage_account.sa-absw-be.primary_access_key
   key_vault_id = azurerm_key_vault.kv-backend.id
 }
+
+
+
