@@ -5,4 +5,4 @@ resource "azurerm_storage_account" "sa" {
   account_tier             = local.account_tier
   account_replication_type = local.account_replication_type
 }
-# Dette er en liten change for å teste workflow nr. 3
+# Dette er en liten change for å teste workflow nr. 4
