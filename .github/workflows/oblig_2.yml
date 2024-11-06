@@ -40,7 +40,7 @@ jobs:
         working-directory: ${{ env.WORKING_DIR }}
 
       - name: Delete fmt check branch
-        run: git branch -d fmt
+        run: git branch -d fmt_check
         working-directory: ${{ env.WORKING_DIR }}
 
   # Job for validate checking the code
