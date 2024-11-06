@@ -40,12 +40,13 @@ jobs:
         working-directory: ${{ env.WORKING_DIR }}
 
       - name: Delete fmt check branch
-        run: git branch -d feature/login-page
+        run: git branch -d fmt
         working-directory: ${{ env.WORKING_DIR }}
 
   # Job for validate checking the code
   # This will happen in the default workflow, but unb
   validate:
+    needs: fmt
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
