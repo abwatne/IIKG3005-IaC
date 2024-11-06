@@ -1,0 +1,76 @@
+name: Terraform CI/CD
+
+on:
+  push:
+    paths:
+      # Any push changes in this folder
+      - 'abwatne-oppg2/abwatne-oppg2/azure-terraform-project/modules/**'
+  workflow_dispatch:
+
+env:
+  ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+  WORKING_DIR: ./abwatne-oppg2/abwatne-oppg2/azure-terraform-project/modules
+
+jobs:
+  # Job for format checking the code
+  fmt:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+
+      # Make new branch and move to it
+      - name: New branch for fmt check 
+        run: git checkout -b fmt_check
+        working-directory: ${{ env.WORKING_DIR }}
+
+      - name: Terraform init
+        run: terraform init
+        working-directory: ${{ env.WORKING_DIR }}
+    
+      - name: Terraform fmt
+        run: terraform fmt -recursive
+        working-directory: ${{ env.WORKING_DIR }}
+
+      - name: Move to main
+        run: git checkout main
+        working-directory: ${{ env.WORKING_DIR }}
+
+      - name: Delete fmt check branch
+        run: git branch -d feature/login-page
+        working-directory: ${{ env.WORKING_DIR }}
+
+  # Job for validate checking the code
+  # This will happen in the default workflow, but unb
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+
+        # Make new branch and move to it
+      - name: New branch for validate check 
+        run: git checkout -b validate_check
+        working-directory: ${{ env.WORKING_DIR }}
+     
+      - name: Terraform init
+        run: terraform init
+        working-directory: ${{ env.WORKING_DIR }}
+    
+      - name: Terraform validate
+        run: terraform validate
+        working-directory: ${{ env.WORKING_DIR }}
+
+        # Move back to main branch and delete old branch
+      - name: Move to main
+        run: git checkout main
+        working-directory: ${{ env.WORKING_DIR }}
+
+      - name: Delete validate check branch
+        run: git branch -d validate_check
+        working-directory: ${{ env.WORKING_DIR }}
+        
+    
