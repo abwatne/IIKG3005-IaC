@@ -16,7 +16,7 @@ env:
 
 jobs:
   # Job for format checking the code
-  fmt:
+  fmt_check:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -45,8 +45,8 @@ jobs:
 
   # Job for validate checking the code
   # This will happen in the default workflow, but in a branch other than main
-  validate:
-    needs: fmt
+  validate_check:
+    needs: fmt_check
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -72,6 +72,42 @@ jobs:
 
       - name: Delete validate check branch
         run: git branch -d validate_check
+        working-directory: ${{ env.WORKING_DIR }}
+
+  
+  
+  tfsec_check:
+    needs: validate_check
+    runs-on: ubuntu-latest
+    steps:
+      - name: New branch for tfsec check
+        run: git checkout -b tfsec_check
+        working-directory: ${{ env.WORKING_DIR }}
+     
+      - name: Terraform init
+        run: terraform init
+        working-directory: ${{ env.WORKING_DIR }}
+      
+      - uses: actions/checkout@master
+      - name: tfsec
+
+      # You may pin to the exact commit or the version.
+        # uses: aquasecurity/tfsec-action@b466648d6e39e7c75324f25d83891162a721f2d6
+        uses: aquasecurity/tfsec-action@v1.0.3
+        with:
+          # Directory to run the action on, from the repo root. Default is . (root of the repository)
+          working_directory: ${{ env.WORKING_DIR }}
+          github_token: ${{ env.GITHUB_TOKEN }}
+        # Space separated args specified here will be added during tfsec execution.
+        # (eg. --force-all-dirs --verbose)
+
+        # Move back to main branch and delete old branch
+      - name: Move to main
+        run: git checkout main
+        working-directory: ${{ env.WORKING_DIR }}
+
+      - name: Delete tfsec check branch
+        run: git branch -d tfsec_check
         working-directory: ${{ env.WORKING_DIR }}
         
     
