@@ -44,7 +44,7 @@ jobs:
         working-directory: ${{ env.WORKING_DIR }}
 
   # Job for validate checking the code
-  # This will happen in the default workflow, but unb
+  # This will happen in the default workflow, but in a branch other than main
   validate:
     needs: fmt
     runs-on: ubuntu-latest
