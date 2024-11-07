@@ -2,6 +2,10 @@ name: Init and apply on pull
 
 on:
   pull_request:
+    types:
+      - opened
+    branches:
+      - 'dev'
     paths:
       # Any pulls in the infrastructure
       - 'abwatne-oppg2/abwatne-oppg2/azure-terraform-project/**'
