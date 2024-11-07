@@ -1,4 +1,4 @@
-name: Init and apply on pull
+name: Merge into dev
 
 on:
   pull_request:
