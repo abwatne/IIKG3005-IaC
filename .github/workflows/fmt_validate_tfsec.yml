@@ -28,7 +28,7 @@ jobs:
         working-directory: ${{ env.WORKING_DIR }}
 
       - name: Move to dev branch 
-        run: git checkout dev || git checkout -b dev
+        run: git checkout infra/setup || git checkout -b infra/setup
         working-directory: ${{ env.WORKING_DIR }}
 
       - name: Terraform workspace select or create dev
@@ -53,7 +53,7 @@ jobs:
         working-directory: ${{ env.WORKING_DIR }}
 
       - name: Move to dev branch 
-        run: git checkout dev || git checkout -b dev
+        run: git checkout infra/setup || git checkout -b infra/setup
         working-directory: ${{ env.WORKING_DIR }}
 
       - name: Terraform workspace select or create dev
@@ -77,7 +77,7 @@ jobs:
         working-directory: ${{ env.WORKING_DIR }}
 
       - name: Move to dev branch 
-        run: git checkout dev || git checkout -b dev
+        run: git checkout infra/setup || git checkout -b infra/setup
         working-directory: ${{ env.WORKING_DIR }}
 
       - name: Terraform workspace select or create dev
