@@ -1,4 +1,4 @@
-name: Terraform CI/CD
+name: Validate code with branhces
 
 on:
   push:
@@ -22,25 +22,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.1.1
 
-      # Make new branch and move to it
-      - name: New branch for fmt check 
-        run: git checkout -b fmt_check
-        working-directory: ${{ env.WORKING_DIR }}
-
       - name: Terraform init
         run: terraform init
+        working-directory: ${{ env.WORKING_DIR }}
+
+      - name: Move to dev branch 
+        run: git checkout -b dev
+        working-directory: ${{ env.WORKING_DIR }}
+
+      - name: Terraform workspace select or create dev
+        run: terraform workspace select dev || terraform workspace new dev
         working-directory: ${{ env.WORKING_DIR }}
     
       - name: Terraform fmt
         run: terraform fmt -recursive
-        working-directory: ${{ env.WORKING_DIR }}
-
-      - name: Move to main
-        run: git checkout main
-        working-directory: ${{ env.WORKING_DIR }}
-
-      - name: Delete fmt check branch
-        run: git branch -d fmt_check
         working-directory: ${{ env.WORKING_DIR }}
 
   # Job for validate checking the code
@@ -51,45 +46,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.1
-
-        # Make new branch and move to it
-      - name: New branch for validate check 
-        run: git checkout -b validate_check
-        working-directory: ${{ env.WORKING_DIR }}
-     
-      - name: Terraform init
-        run: terraform init
-        working-directory: ${{ env.WORKING_DIR }}
     
       - name: Terraform validate
         run: terraform validate
         working-directory: ${{ env.WORKING_DIR }}
-
-        # Move back to main branch and delete old branch
-      - name: Move to main
-        run: git checkout main
-        working-directory: ${{ env.WORKING_DIR }}
-
-      - name: Delete validate check branch
-        run: git branch -d validate_check
-        working-directory: ${{ env.WORKING_DIR }}
-
-  
   
   tfsec_check:
     needs: validate_check
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4.1.1
-      
-      - name: New branch for tfsec check
-        run: git checkout -b tfsec_check
-        working-directory: ${{ env.WORKING_DIR }}
-     
-      - name: Terraform init
-        run: terraform init
-        working-directory: ${{ env.WORKING_DIR }}
       
       - uses: actions/checkout@master
       - name: tfsec
@@ -103,14 +68,4 @@ jobs:
           github_token: ${{ env.GITHUB_TOKEN }}
         # Space separated args specified here will be added during tfsec execution.
         # (eg. --force-all-dirs --verbose)
-
-        # Move back to main branch and delete old branch
-      - name: Move to main
-        run: git checkout main
-        working-directory: ${{ env.WORKING_DIR }}
-
-      - name: Delete tfsec check branch
-        run: git branch -d tfsec_check
-        working-directory: ${{ env.WORKING_DIR }}
-        
-    
+        # --exclude-severity LOW,MEDIUM
