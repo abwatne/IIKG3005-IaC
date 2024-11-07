@@ -1,16 +1,16 @@
 name: Init and apply on pull
 
+on:
+  pull_request:
+    branches: [ staging ]
+    types: [closed]
+
 env:
   ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
   ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
   ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
   ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
   WORKING_DIR: ./abwatne-oppg2/abwatne-oppg2/azure-terraform-project/
-
-on:
-  pull_request:
-    branches: [ staging ]
-    types: [closed]
 
 jobs:
   dev_stage:
@@ -32,7 +32,7 @@ jobs:
         working-directory: ${{ env.WORKING_DIR }}
 
       - name: Terraform plan
-        run: terraform plan -var-file='terraform.tfvars.dev' -out='main.tfplan'
+        run: terraform plan -var-file='abwatne-oppg2/azure-terraform-project/terraform.tfvars.dev' -out='main.tfplan'
       
       - name: Terraform apply dev
         run: terraform apply -out='main.tfplan' -auto-approve
