@@ -65,7 +65,7 @@ jobs:
         working-directory: ${{ env.WORKING_DIR }}
   
   tfsec_check:
-    needs: validate_check
+    #needs: validate_check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
