@@ -42,7 +42,7 @@ jobs:
   # Job for validate checking the code
   # This will happen in the default workflow, but in a branch other than main
   validate_check:
-    #needs: fmt_check
+    needs: fmt_check
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -65,7 +65,7 @@ jobs:
         working-directory: ${{ env.WORKING_DIR }}
   
   tfsec_check:
-    #needs: validate_check
+    needs: validate_check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
