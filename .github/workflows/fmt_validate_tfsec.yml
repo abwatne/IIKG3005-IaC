@@ -79,4 +79,4 @@ jobs:
           # Directory to run the action on, from the repo root. Default is . (root of the repository)
           working_directory: ${{ env.WORKING_DIR }}
           github_token: ${{ env.GITHUB_TOKEN }}
-          args: -m CRITICAL -m HIGH --include-ignored
+          args: --minimum-severity string CRITICAL --minimum-severity string HIGH --include-ignored
