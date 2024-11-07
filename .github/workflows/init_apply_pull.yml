@@ -14,15 +14,11 @@ env:
 
 jobs:
   dev_stage:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.1
       
-      #- name: Move to dev branch 
-      #  run: git checkout dev || git checkout -b dev
-      #  working-directory: ${{ env.WORKING_DIR }}
-
       - name: Terraform init
         run: terraform init
         working-directory: ${{ env.WORKING_DIR }}
@@ -30,14 +26,37 @@ jobs:
       - name: Terraform workspace select or create dev
         run: terraform workspace select dev || terraform workspace new dev
         working-directory: ${{ env.WORKING_DIR }}
+      
+      - name: Terraform apply dev
+        run: terraform apply -auto-approve
+        working-directory: ${{ env.WORKING_DIR }}
+
+#jobs:
+#  dev_stage:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v4.1.1
+      
+      #- name: Move to dev branch 
+      #  run: git checkout dev || git checkout -b dev
+      #  working-directory: ${{ env.WORKING_DIR }}
+
+#      - name: Terraform init
+#        run: terraform init
+#        working-directory: ${{ env.WORKING_DIR }}
+        
+#      - name: Terraform workspace select or create dev
+#        run: terraform workspace select dev || terraform workspace new dev
+#        working-directory: ${{ env.WORKING_DIR }}
 
       #- name: Terraform plan
       #  run: terraform plan -var-file='terraform.tfvars.dev' -out='main.tfplan'
       # working-directory: ${{ env.WORKING_DIR }}
       
-      - name: Terraform apply dev
-        run: terraform apply -auto-approve #-out='main.tfplan' 
-        working-directory: ${{ env.WORKING_DIR }}
+ #     - name: Terraform apply dev
+#       run: terraform apply -auto-approve #-out='main.tfplan' 
+#        working-directory: ${{ env.WORKING_DIR }}
       #- name: Push to staging branch
       #  run: git push origin staging
       #  working-directory: ${{ env.WORKING_DIR }}
