@@ -20,9 +20,9 @@ jobs:
         run: git merge dev
         working-directory: ${{ env.WORKING_DIR }}
 
-      - name: Push to staging branch
-        run: git push origin staging
-        working-directory: ${{ env.WORKING_DIR }}
+      #- name: Push to staging branch
+      #  run: git push origin staging
+      #  working-directory: ${{ env.WORKING_DIR }}
         
     #paths:
       # Any pulls in the infrastructure
