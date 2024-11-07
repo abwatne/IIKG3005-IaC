@@ -2,11 +2,10 @@ name: Init and apply on pull
 
 on:
   pull_request:
-    types:
-      - opened
+    types: [opened, synchronize, reopened]
     branches:
       - 'dev'
-    paths:
+    #paths:
       # Any pulls in the infrastructure
       - 'abwatne-oppg2/abwatne-oppg2/azure-terraform-project/**'
   workflow_dispatch:
