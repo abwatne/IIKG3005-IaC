@@ -1,7 +1,7 @@
 name: Init and apply on pull
 
 on:
-  pull:
+  pull_request:
     paths:
       # Any pulls in the infrastructure
       - 'abwatne-oppg2/abwatne-oppg2/azure-terraform-project/**'
@@ -24,20 +24,20 @@ jobs:
       - name: Terraform init
         run: terraform init
         working-directory: ${{ env.WORKING_DIR }}
+
+      - name: Move to dev branch 
+        run: git checkout dev || git checkout -b dev
+        working-directory: ${{ env.WORKING_DIR }}
         
       - name: Terraform workspace select or create dev
         run: terraform workspace select dev || terraform workspace new dev
         working-directory: ${{ env.WORKING_DIR }}
       
       - name: Terraform apply dev
-        run: terraform apply -auto-approve
+        run: terraform apply -var-file='terraform.tfvars.dev' -auto-approve
         working-directory: ${{ env.WORKING_DIR }}
 
-      - name: Test dev
-        run: curl $(terraform output -raw primary_web_endpoint)
-        working-directory: ${{ env.WORKING_DIR }}
-
-  stage_prod:
+  staging_prod:
     needs: dev_stage
     runs-on: ubuntu-latest
     steps:
@@ -47,25 +47,25 @@ jobs:
       - name: Terraform init
         run: terraform init
         working-directory: ${{ env.WORKING_DIR }}
+
+      - name: Move to staging branch 
+        run: git checkout staging || git checkout -b staging
+        working-directory: ${{ env.WORKING_DIR }}
         
       - name: Terraform workspace select or create stage
-        run: terraform workspace select stage || terraform workspace new stage
+        run: terraform workspace select staging || terraform workspace new staging
         working-directory: ${{ env.WORKING_DIR }}
       
-      - name: Terraform apply stage
-        run: terraform apply -auto-approve
-        working-directory: ${{ env.WORKING_DIR }}
-
-      - name: Test stage
-        run: curl $(terraform output -raw primary_web_endpoint)
+      - name: Terraform apply staging
+        run: terraform apply -var-file='terraform.tfvars.staging' -auto-approve
         working-directory: ${{ env.WORKING_DIR }}
 
   prod:
-    needs: stage_prod
+    needs: staging_prod
     runs-on: ubuntu-latest
     environment: 
       name: production
-      url: ${{ steps.get_web_endpoint.outputs.WEB_ENDPOINT }} # replace deploy_prod and web_url with actual output variables
+      #url: ${{ steps.get_web_endpoint.outputs.WEB_ENDPOINT }} # replace deploy_prod and web_url with actual output variables
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.1
@@ -73,20 +73,29 @@ jobs:
       - name: Terraform init
         run: terraform init
         working-directory: ${{ env.WORKING_DIR }}
-        
+
+      - name: Move to prod branch 
+        run: git checkout prod || git checkout -b prod
+        working-directory: ${{ env.WORKING_DIR }}
+      
       - name: Terraform workspace select or create prod
         run: terraform workspace select prod || terraform workspace new prod
         working-directory: ${{ env.WORKING_DIR }}
       
       - name: Terraform apply prod
-        run: terraform apply -auto-approve
+        run: terraform apply -var-file='terraform.tfvars.prod' -auto-approve
         working-directory: ${{ env.WORKING_DIR }}
 
-      - name: Test prod
-        run: curl $(terraform output -raw primary_web_endpoint)
+      #- name: Test prod
+      #  run: curl $(terraform output -raw primary_web_endpoint)
+      #  working-directory: ${{ env.WORKING_DIR }}
+
+      - name: Message
+        run: echo "Infrastrucutre sent into production" 
         working-directory: ${{ env.WORKING_DIR }}
 
-      - name: Get Web Endpoint
-        id: get_web_endpoint
-        run: echo "WEB_ENDPOINT=$(terraform output -raw primary_web_endpoint)" 
-        working-directory: ${{ env.WORKING_DIR }}
+
+      #- name: Get Web Endpoint
+      #  id: get_web_endpoint
+      #  run: echo "WEB_ENDPOINT=$(terraform output -raw primary_web_endpoint)" 
+      # working-directory: ${{ env.WORKING_DIR }}
