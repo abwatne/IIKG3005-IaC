@@ -2,29 +2,28 @@
 ###### Top level names ######
 #############################
 base_name = "abswdev"
-rg_name = "devrg"
+rg_name = "rg"
 location = "westeurope"
 
 ##############################
 ###### networking names ######
 ##############################
-sg_name = "devsa"
-vnet_name = "devvnet"
-public_ip_name = "devpublic"
+sg_name = "sa"
+vnet_name = "vnet"
 
 ###########################
 ###### storage names ######
 ###########################
-sa_name = "devsa"
+sa_name = "sa"
 
 ############################
 ###### database names ######
 ############################
-mssql_name = "devmssql"
-db_name = "devdb"
+mssql_name = "ssql"
+db_name = "db"
 
 ###############################
 ###### app_service names ######
 ###############################
-splan_name = "devsp"
-linux_web_app_name = "devlwapp"
+splan_name = "sp"
+linux_web_app_name = "lwapp"
