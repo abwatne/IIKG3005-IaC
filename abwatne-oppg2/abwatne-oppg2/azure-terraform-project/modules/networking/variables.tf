@@ -1,19 +1,19 @@
 variable "base_name" {
   type = string
   description = "Base name for resource groups"
-  default = "absw"
+  default = ""
 }
 
 variable "location" {
   type = string
   description = "Location for the resource group"
-  default = "westeurope"
+  default = ""
 }
 
 variable "rg_name" {
   type = string
   description = "Resource group name"
-  default = "rg"
+  default = ""
 }
 
 variable "random_string" {
@@ -39,36 +39,6 @@ variable "snet_name" {
   description = "Subnet name"
   default = "snet"
 }
-
-/*variable "snet_ase_name" {
-  type = string
-  description = "Subnet ASE name"
-  default = "snet_ase"
-}
-
-variable "public_ip_name" {
-  type = string
-  description = "Public IP name"
-  default = "public"
-}
-
-variable "lb_name" {
-  type = string
-  description = "Load Balancer name"
-  default = "lb"
-}
-
-variable "fe_ip_name" {
-  type = string
-  description = "Front end IP name"
-  default = "feip"
-}
-
-variable "web_app_id" {
-  type = string
-  description = "Web app ID"
-  default = ""
-}*/
 
 locals {
   allocation_method = "Static"

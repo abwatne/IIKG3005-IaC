@@ -1,19 +1,19 @@
 variable "base_name" {
   type = string
   description = "Base name for resource groups"
-  default = "absw"
+  default = ""
 }
 
 variable "location" {
   type = string
   description = "Location for the resource group"
-  default = "westeurope"
+  default = ""
 }
 
 variable "rg_name" {
   type = string
   description = "Resource group name"
-  default = "rg"
+  default = ""
 }
 
 variable "random_string" {
@@ -31,7 +31,7 @@ variable "splan_name" {
 variable "linux_web_app_name" {
   type = string
   description = "Linux web app name"
-  default = "lapp1233123"
+  default = "lwapp"
 }
 
 

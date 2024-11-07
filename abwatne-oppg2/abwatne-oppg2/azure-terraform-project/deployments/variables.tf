@@ -138,6 +138,6 @@ variable "sa_name" {
 #############################
 locals {
   workspaces_suffix = terraform.workspace == "default" ? "" : "${terraform.workspace}"
-  rg_name           = terraform.workspace == "default" ? "${var.rg_name}" : "${var.base_name}-${var.rg_name}-${local.workspaces_suffix}"
+  rg_name           = terraform.workspace == "default" ? "${var.rg_name}" : "${var.base_name}-${var.rg_name}-${local.workspaces_suffix}-${var.random_string}"
   sa_name           = terraform.workspace == "default" ? "${var.sa_name}" : "${var.sa_name}${local.workspaces_suffix}"
 }
