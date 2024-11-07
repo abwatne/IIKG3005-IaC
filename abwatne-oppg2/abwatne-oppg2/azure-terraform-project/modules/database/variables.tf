@@ -34,6 +34,18 @@ variable "db_name" {
   default = "db"
 }
 
+variable "sa_endpoint" {
+  type = string
+  description = "Storage account primary blob endpoint"
+  default = ""
+}
+
+variable "sa_primary_access_key" {
+  type = string
+  description = "Storage account primary access key"
+  default = ""
+}
+
 locals {
   sku_name = "S0"
   enclave_type = "VBS"

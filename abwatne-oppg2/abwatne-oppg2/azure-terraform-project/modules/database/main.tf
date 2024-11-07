@@ -10,6 +10,14 @@ resource "azurerm_mssql_server" "mssqlserver" {
   minimum_tls_version          = "1.2"
 }
 
+resource "azurerm_mssql_server_extended_auditing_policy" "mssqlserver_ext_aud_policy" {
+  server_id                               = azurerm_mssql_server.mssqlserver.id
+  storage_endpoint                        = var.sa_endpoint
+  storage_account_access_key              = var.sa_primary_access_key
+  storage_account_access_key_is_secondary = false
+  retention_in_days                       = 6
+}
+
 resource "azurerm_mssql_database" "mssqldb" {
   name         = "${var.base_name}-${var.db_name}-${local.workspaces_suffix}-${var.random_string}"
   server_id    = azurerm_mssql_server.mssqlserver.id

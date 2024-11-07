@@ -51,6 +51,8 @@ module "database" {
   mssql_name = var.mssql_name
   db_name    = var.db_name
   random_string = module.global.random
+  sa_endpoint = module.storage.sa_primary_endpoint
+  sa_primary_access_key = module.storage.sa_primary_access_key
 }
 
 module "networking" {
