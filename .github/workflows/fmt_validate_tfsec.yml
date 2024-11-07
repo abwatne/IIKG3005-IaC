@@ -1,4 +1,4 @@
-name: Validate code with branhces
+name: Simple Code Validation
 
 on:
   push:
