@@ -4,7 +4,7 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
     branches:
-      - 'dev'
+      - dev
     #paths:
       # Any pulls in the infrastructure
       - 'abwatne-oppg2/abwatne-oppg2/azure-terraform-project/**'
