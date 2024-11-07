@@ -32,7 +32,7 @@ jobs:
         working-directory: ${{ env.WORKING_DIR }}
       
       - name: Terraform apply dev
-        run: terraform apply "main.tfplan" -auto-approve
+        run: terraform apply -auto-approve "main.tfplan"
         working-directory: ${{ env.WORKING_DIR }}
 
 #jobs:
