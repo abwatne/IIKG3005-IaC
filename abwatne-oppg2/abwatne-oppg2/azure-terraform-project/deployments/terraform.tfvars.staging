@@ -1,0 +1,22 @@
+##############################
+###### networking names ######
+##############################
+sg_name = "stagesg"
+vnet_name = "stagevnet"
+
+###########################
+###### storage names ######
+###########################
+sa_name = "stagesa"
+
+############################
+###### database names ######
+############################
+mssql_name = "stagemssql"
+db_name = "stagedb"
+
+###############################
+###### app_service names ######
+###############################
+splan_name = "stagesp"
+linux_web_app_name = "stagelwapp"
