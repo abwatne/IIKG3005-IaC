@@ -5,9 +5,9 @@ on:
     types: [opened, synchronize, reopened]
     branches:
       - 'dev'
-    paths:
+    #paths:
       # Any pulls in the infrastructure
-      - 'abwatne-oppg2/abwatne-oppg2/azure-terraform-project/**'
+    #  - 'abwatne-oppg2/abwatne-oppg2/azure-terraform-project/**'
   workflow_dispatch:
 
 env:
