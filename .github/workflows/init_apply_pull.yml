@@ -26,6 +26,14 @@ jobs:
       - name: Terraform workspace select or create dev
         run: terraform workspace select dev || terraform workspace new dev
         working-directory: ${{ env.WORKING_DIR }}
+
+      - name: Terraform init
+        run: terraform init
+        working-directory: ${{ env.WORKING_DIR }}
+
+      - name: Terraform plan
+        run: terraform plan -out='main.tfplan'
+        working-directory: ${{ env.WORKING_DIR }}
       
       - name: Terraform apply dev
         run: terraform apply -auto-approve
