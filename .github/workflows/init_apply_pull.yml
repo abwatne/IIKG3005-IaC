@@ -1,0 +1,45 @@
+name: Init and apply on pull
+
+env:
+  ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+  WORKING_DIR: ./abwatne-oppg2/abwatne-oppg2/azure-terraform-project/
+
+on:
+  pull_request:
+    branches: [ dev ]
+    types: [closed]
+
+jobs:
+  dev_stage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+      
+      - name: Terraform init
+        run: terraform init
+        working-directory: ${{ env.WORKING_DIR }}
+
+      - name: Move to dev branch 
+        run: git checkout dev || git checkout -b dev
+        working-directory: ${{ env.WORKING_DIR }}
+        
+      - name: Terraform workspace select or create dev
+        run: terraform workspace select dev || terraform workspace new dev
+        working-directory: ${{ env.WORKING_DIR }}
+      
+      - name: Terraform apply dev
+        run: terraform apply -var-file='terraform.tfvars.dev' -auto-approve
+        working-directory: ${{ env.WORKING_DIR }}
+      #- name: Push to staging branch
+      #  run: git push origin staging
+      #  working-directory: ${{ env.WORKING_DIR }}
+        
+    #paths:
+      # Any pulls in the infrastructure
+      #- 'abwatne-oppg2/abwatne-oppg2/azure-terraform-project/**'
+     #workflow_dispatch:
+     
