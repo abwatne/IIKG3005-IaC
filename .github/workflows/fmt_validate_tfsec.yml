@@ -66,4 +66,4 @@ jobs:
           # Directory to run the action on, from the repo root. Default is . (root of the repository)
           working_directory: ${{ env.WORKING_DIR }}
           github_token: ${{ env.GITHUB_TOKEN }}
-           --exclude-severity LOW,MEDIUM
+          #--exclude-severity LOW,MEDIUM
