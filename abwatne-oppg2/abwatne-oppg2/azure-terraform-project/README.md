@@ -14,3 +14,5 @@ https://aquasecurity.github.io/tfsec/v1.28.11/checks/azure/storage/use-secure-tl
 https://aquasecurity.github.io/tfsec/v1.28.11/checks/azure/database/no-public-access/
 https://aquasecurity.github.io/tfsec/v1.28.11/checks/azure/database/secure-tls-policy/
 https://aquasecurity.github.io/tfsec/v1.28.11/checks/azure/database/enable-audit/
+
+gammle v av tfsec
