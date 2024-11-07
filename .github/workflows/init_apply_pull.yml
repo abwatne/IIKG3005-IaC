@@ -2,8 +2,7 @@ name: Init and apply on pull
 
 on:
   pull_request:
-    types:
-      - opened
+    types: [opened, synchronize, reopened]
     branches:
       - 'dev'
     paths:
