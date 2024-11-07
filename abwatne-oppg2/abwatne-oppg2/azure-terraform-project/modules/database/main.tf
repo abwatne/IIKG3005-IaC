@@ -15,7 +15,7 @@ resource "azurerm_mssql_server_extended_auditing_policy" "mssqlserver_ext_aud_po
   storage_endpoint                        = var.sa_endpoint
   storage_account_access_key              = var.sa_primary_access_key
   storage_account_access_key_is_secondary = false
-  retention_in_days                       = 6
+  retention_in_days                       = 90
 }
 
 resource "azurerm_mssql_database" "mssqldb" {
