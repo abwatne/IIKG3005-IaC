@@ -1,4 +1,4 @@
-name: Merge into dev
+name: Merge into staging
 
 on:
   pull_request:
@@ -31,7 +31,7 @@ jobs:
         run: terraform plan -var-file='terraform.tfvars.staging' -out='main.tfplan'
         working-directory: ${{ env.WORKING_DIR }}
       
-      - name: Terraform apply dev
+      - name: Terraform apply staging
         run: terraform apply "main.tfplan" -auto-approve
         working-directory: ${{ env.WORKING_DIR }}
 
