@@ -44,5 +44,5 @@ locals {
   allocation_method = "Static"
 
   workspaces_suffix = terraform.workspace == "default" ? "" : "${terraform.workspace}"
-  #rg_name           = terraform.workspace == "default" ? "${var.rg_name}" : "${var.base_name}-${var.rg_name}-${local.workspaces_suffix}"
+  
 }
