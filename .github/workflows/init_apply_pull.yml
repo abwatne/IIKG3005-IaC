@@ -22,21 +22,21 @@ jobs:
       #- name: Move to dev branch 
       #  run: git checkout dev || git checkout -b dev
       #  working-directory: ${{ env.WORKING_DIR }}
+
+      - name: Terraform init
+        run: terraform init
+        working-directory: ${{ env.WORKING_DIR }}
         
       - name: Terraform workspace select or create dev
         run: terraform workspace select dev || terraform workspace new dev
         working-directory: ${{ env.WORKING_DIR }}
 
-      - name: Terraform init
-        run: terraform init
-        working-directory: ${{ env.WORKING_DIR }}
-
-      - name: Terraform plan
-        run: terraform plan -var-file='terraform.tfvars.dev' -out='main.tfplan'
-        working-directory: ${{ env.WORKING_DIR }}
+      #- name: Terraform plan
+      #  run: terraform plan -var-file='terraform.tfvars.dev' -out='main.tfplan'
+      # working-directory: ${{ env.WORKING_DIR }}
       
       - name: Terraform apply dev
-        run: terraform apply -out='main.tfplan' -auto-approve
+        run: terraform apply -auto-approve #-out='main.tfplan' 
         working-directory: ${{ env.WORKING_DIR }}
       #- name: Push to staging branch
       #  run: git push origin staging
