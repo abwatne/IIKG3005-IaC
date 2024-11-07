@@ -31,6 +31,7 @@ variable "sa_name" {
 locals {
   account_tier = "Standard"
   account_replication_type = "GRS"
+  min_tls_version = "TLS1_2"
 
   workspaces_suffix = terraform.workspace == "default" ? "" : "${terraform.workspace}"
   sa_name           = terraform.workspace == "default" ? "${var.sa_name}" : "${var.sa_name}${local.workspaces_suffix}"
