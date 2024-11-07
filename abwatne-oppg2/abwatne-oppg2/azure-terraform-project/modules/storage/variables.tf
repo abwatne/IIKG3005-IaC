@@ -7,7 +7,7 @@ variable "base_name" {
 variable "location" {
   type = string
   description = "Location for the resource group"
-  default = "westeurope"
+  default = ""
 }
 
 variable "rg_name" {

@@ -1,5 +1,5 @@
 resource "azurerm_network_security_group" "sg" {
-  name                = "${var.base_name}-${var.sg_name}-${local.workspaces_suffix}-${var.random_string}"
+  name                = lower("${var.base_name}-${var.sg_name}-${local.workspaces_suffix}-${var.random_string}")
   location            = var.location
   resource_group_name = var.rg_name
 }

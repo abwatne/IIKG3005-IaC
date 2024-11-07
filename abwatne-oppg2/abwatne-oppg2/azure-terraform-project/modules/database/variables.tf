@@ -7,7 +7,7 @@ variable "base_name" {
 variable "location" {
   type = string
   description = "Location for the resource group"
-  default = "westeurope"
+  default = ""
 }
 
 variable "rg_name" {
@@ -53,4 +53,5 @@ locals {
   license_type = "LicenseIncluded"
 
   workspaces_suffix = terraform.workspace == "default" ? "" : "${terraform.workspace}"
+  #rg_name           = terraform.workspace == "default" ? "${var.rg_name}" : "${var.base_name}-${var.rg_name}-${local.workspaces_suffix}"
 }
