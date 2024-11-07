@@ -5,6 +5,9 @@ resource "azurerm_mssql_server" "mssqlserver" {
   version                      = "12.0"
   administrator_login          = "4dm1n157r470r"
   administrator_login_password = "4-v3ry-53cr37-p455w0rd"
+
+  public_network_access_enabled    = false
+  minimum_tls_version          = "1.2"
 }
 
 resource "azurerm_mssql_database" "mssqldb" {
@@ -15,10 +18,7 @@ resource "azurerm_mssql_database" "mssqldb" {
   max_size_gb  = local.max_size_gb
   sku_name     = local.sku_name
   enclave_type = local.enclave_type
-
-  tags = {
-    environment = "DB"
-  }
+  
 
   # prevent the possibility of accidental data loss
   lifecycle {
