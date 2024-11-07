@@ -42,7 +42,7 @@ jobs:
   # Job for validate checking the code
   # This will happen in the default workflow, but in a branch other than main
   validate_check:
-    needs: fmt_check
+    #needs: fmt_check
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -78,4 +78,4 @@ jobs:
           # Directory to run the action on, from the repo root. Default is . (root of the repository)
           working_directory: ${{ env.WORKING_DIR }}
           github_token: ${{ env.GITHUB_TOKEN }}
-           --minimum-severity CRITICAL --minimum-severity HIGH --minimum-severity MEDIUM --include-ignored
+          args: --concise-output #--minimum-severity CRITICAL --minimum-severity HIGH --minimum-severity MEDIUM --include-ignored
