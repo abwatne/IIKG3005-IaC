@@ -26,7 +26,7 @@ module "global" {
 }
 
 resource "azurerm_resource_group" "absw_oblig2" {
-  name     = "${module.global.base_name}-${module.global.rg_name}-${local.workspaces_suffix}"
+  name     = "${module.global.base_name}-${module.global.rg_name}-${local.workspaces_suffix}-${module.global.random}"
   location = module.global.location
 }
 
