@@ -1,16 +1,15 @@
 #############################
 ###### Top level names ######
 #############################
-base_name = "abswdev"
-rg_name = "devrg"
-location = "westeurope"
+#base_name = "abswdev"
+#rg_name = "rgdev"
+#location = "westeurope"
 
 ##############################
 ###### networking names ######
 ##############################
-sg_name = "devsa"
+sg_name = "devsg"
 vnet_name = "devvnet"
-public_ip_name = "devpublic"
 
 ###########################
 ###### storage names ######

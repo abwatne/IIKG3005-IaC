@@ -1,0 +1,22 @@
+##############################
+###### networking names ######
+##############################
+sg_name = "prodsg"
+vnet_name = "prodvnet"
+
+###########################
+###### storage names ######
+###########################
+sa_name = "prodsa"
+
+############################
+###### database names ######
+############################
+mssql_name = "prodmssql"
+db_name = "proddb"
+
+###############################
+###### app_service names ######
+###############################
+splan_name = "prodsp"
+linux_web_app_name = "prodlwapp"

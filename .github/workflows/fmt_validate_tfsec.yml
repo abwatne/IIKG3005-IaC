@@ -1,4 +1,4 @@
-name: Validate code with branhces
+name: Simple Code Validation
 
 on:
   push:
@@ -13,7 +13,7 @@ env:
   ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
   ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
   GITHUB_TOKEN: ${{ secrets.TOKEN }}
-  WORKING_DIR: ./abwatne-oppg2/abwatne-oppg2/azure-terraform-project/
+  WORKING_DIR: ./abwatne-oppg2/abwatne-oppg2/azure-terraform-project/deployments
 
 jobs:
   # Job for format checking the code
@@ -27,13 +27,13 @@ jobs:
         run: terraform init
         working-directory: ${{ env.WORKING_DIR }}
 
-      - name: Move to dev branch 
-        run: git checkout -b dev
-        working-directory: ${{ env.WORKING_DIR }}
+      #- name: Move to dev branch 
+      #  run: git checkout infra/setup || git checkout -b infra/setup
+      #  working-directory: ${{ env.WORKING_DIR }}
 
-      - name: Terraform workspace select or create dev
-        run: terraform workspace select dev || terraform workspace new dev
-        working-directory: ${{ env.WORKING_DIR }}
+      #- name: Terraform workspace select or create dev
+      #  run: terraform workspace select dev || terraform workspace new dev
+      # working-directory: ${{ env.WORKING_DIR }}
     
       - name: Terraform fmt
         run: terraform fmt -recursive
@@ -52,13 +52,13 @@ jobs:
         run: terraform init
         working-directory: ${{ env.WORKING_DIR }}
 
-      - name: Move to dev branch 
-        run: git checkout -b dev
-        working-directory: ${{ env.WORKING_DIR }}
+     # - name: Move to dev branch 
+     #   run: git checkout infra/setup || git checkout -b infra/setup
+     #  working-directory: ${{ env.WORKING_DIR }}
 
-      - name: Terraform workspace select or create dev
-        run: terraform workspace select dev || terraform workspace new dev
-        working-directory: ${{ env.WORKING_DIR }}
+#      - name: Terraform workspace select or create dev
+#        run: terraform workspace select dev || terraform workspace new dev
+#        working-directory: ${{ env.WORKING_DIR }}
     
       - name: Terraform validate
         run: terraform validate
@@ -76,13 +76,13 @@ jobs:
         run: terraform init
         working-directory: ${{ env.WORKING_DIR }}
 
-      - name: Move to dev branch 
-        run: git checkout -b dev
-        working-directory: ${{ env.WORKING_DIR }}
+#      - name: Move to dev branch 
+  #      run: git checkout infra/setup || git checkout -b infra/setup
+   #     working-directory: ${{ env.WORKING_DIR }}
 
-      - name: Terraform workspace select or create dev
-        run: terraform workspace select dev || terraform workspace new dev
-        working-directory: ${{ env.WORKING_DIR }}
+#      - name: Terraform workspace select or create dev
+ #       run: terraform workspace select dev || terraform workspace new dev
+ #       working-directory: ${{ env.WORKING_DIR }}
     
       - uses: actions/checkout@master
       - name: tfsec

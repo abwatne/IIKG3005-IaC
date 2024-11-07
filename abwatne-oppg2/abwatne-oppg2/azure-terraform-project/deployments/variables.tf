@@ -4,25 +4,25 @@
 variable "base_name" {
   type        = string
   description = "Resource groups base name"
-  default     = "absw"
+  default     = ""
 }
 
 variable "rg_name" {
   type        = string
   description = "Resource group name"
-  default     = "oblig2"
+  default     = ""
 }
 
 variable "location" {
   type        = string
   description = "Location for the resource group"
-  default     = "westeurope"
+  default     = ""
 }
 
 variable "random_string" {
-  type = string
+  type        = string
   description = "Random string"
-  default = ""
+  default     = ""
 }
 
 #########################################
@@ -44,36 +44,6 @@ variable "snet_name" {
   type        = string
   description = "Subnet name"
   default     = "snet"
-}
-
-variable "snet_ase_id" {
-  type = string
-  description = "Subnet ASE ID"
-  default = ""
-}
-
-variable "public_ip_name" {
-  type        = string
-  description = "Public IP name"
-  default     = "public"
-}
-
-variable "lb_name" {
-  type        = string
-  description = "Load Balancer name"
-  default     = "lb"
-}
-
-variable "fe_ip_name" {
-  type        = string
-  description = "Front end IP name"
-  default     = "feip"
-}
-
-variable "web_app_id" {
-  type        = string
-  description = "Web app ID"
-  default     = ""
 }
 
 #######################################
@@ -106,22 +76,10 @@ variable "linux_web_app_name" {
   default     = "lwapp"
 }
 
-variable "nic_name" {
-  type = string
-  description = "NIC name"
-  default = "nic"
-}
-
-variable "ipconf_name" {
-  type = string
-  description = "IP configuration name"
-  default = "ipconf"
-}
-
 variable "vnet_id" {
-  type = string
+  type        = string
   description = "Virtual network ID"
-  default = ""
+  default     = ""
 }
 
 ######################################
@@ -130,7 +88,7 @@ variable "vnet_id" {
 variable "sa_name" {
   type        = string
   description = "Storage account name"
-  default     = "saaa"
+  default     = "sa"
 }
 
 #############################
@@ -138,6 +96,6 @@ variable "sa_name" {
 #############################
 locals {
   workspaces_suffix = terraform.workspace == "default" ? "" : "${terraform.workspace}"
-  rg_name           = terraform.workspace == "default" ? "${var.rg_name}" : "${var.base_name}-${var.rg_name}-${local.workspaces_suffix}"
-  sa_name           = terraform.workspace == "default" ? "${var.sa_name}" : "${var.sa_name}${local.workspaces_suffix}"
+  rg_name           = terraform.workspace == "default" ? "${var.rg_name}" : "${var.base_name}-${var.rg_name}-${local.workspaces_suffix}-${var.random_string}"
+  sa_name           = terraform.workspace == "default" ? "${var.sa_name}" : "${var.base_name}${var.sa_name}${local.workspaces_suffix}"
 }
