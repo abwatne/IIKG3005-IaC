@@ -4,8 +4,6 @@ on:
   pull_request:
     branches: [ staging ]
     types: [closed]
-    paths:
-      - 'abwatne-oppg2/abwatne-oppg2/azure-terraform-project/**'
 
 env:
   ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
