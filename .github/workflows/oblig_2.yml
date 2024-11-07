@@ -80,6 +80,9 @@ jobs:
     needs: validate_check
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+      
       - name: New branch for tfsec check
         run: git checkout -b tfsec_check
         working-directory: ${{ env.WORKING_DIR }}
