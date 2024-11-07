@@ -13,7 +13,7 @@ env:
   WORKING_DIR: ./abwatne-oppg2/abwatne-oppg2/azure-terraform-project/deployments
 
 jobs:
-  dev_stage:
+  merge_prod:
     runs-on: ubuntu-latest
     environment: 
       name: production
